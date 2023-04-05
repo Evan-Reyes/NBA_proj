@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:nba_app/playoffresults.dart';
 // ignore: unused_import
 import './homepage.dart'; //importing the home widget
 import './matchup.dart';
+import './playoffpage.dart';
 import './aboutpage.dart';
 
-class PlayoffPage extends StatefulWidget {
-  const PlayoffPage({Key? key}) : super(key: key);
+class PlayoffResults extends StatefulWidget {
+  const PlayoffResults({Key? key}) : super(key: key);
 
   @override
-  _PlayoffPageState createState() => _PlayoffPageState();
+  _PlayoffResultsState createState() => _PlayoffResultsState();
 }
 
-class _PlayoffPageState extends State<PlayoffPage> {
+class _PlayoffResultsState extends State<PlayoffResults> {
   @override
   Widget build(BuildContext context) {
     final bodyColumn = Container(
@@ -21,27 +21,19 @@ class _PlayoffPageState extends State<PlayoffPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Build the 2023 NBA Playoff Bracket',
+            'Results:',
             style: TextStyle(
                 color: Colors.red, fontSize: 36, fontWeight: FontWeight.bold),
           ),
           Image.asset("assets/blankBracket.png"),
-          SizedBox(
+          Container(
             height: 100,
             width: 300,
-            child: ElevatedButton(
-              child: Text('PREDICT NOW'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                // side: BorderSide(color: Colors.yellow, width: 5),
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontStyle: FontStyle.normal),
-                shadowColor: Colors.black,
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PlayoffResults())),
+            color: Colors.blue,
+            child: Text(
+              'CHAMPION!',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white, fontSize: 25),
             ),
           ),
         ],
@@ -89,8 +81,14 @@ class _PlayoffPageState extends State<PlayoffPage> {
 
           Center(
             //adding the second navigation item and positioning it at the center
-            child: Text('Playoff Predictor',
-                style: TextStyle(color: Colors.black)),
+            child: TextButton(
+              child: Text('Playoff Predictor',
+                  style: TextStyle(color: Colors.white)),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PlayoffPage()),
+              ),
+            ),
           ),
           SizedBox(width: 60),
           Center(

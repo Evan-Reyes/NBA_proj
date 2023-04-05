@@ -1,52 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nba_app/playoffresults.dart';
 // ignore: unused_import
 import './homepage.dart'; //importing the home widget
 import './matchup.dart';
-import './aboutpage.dart';
+import './playoffpage.dart';
 
-class PlayoffPage extends StatefulWidget {
-  const PlayoffPage({Key? key}) : super(key: key);
+class AboutPage extends StatefulWidget {
+  const AboutPage({Key? key}) : super(key: key);
 
   @override
-  _PlayoffPageState createState() => _PlayoffPageState();
+  _AboutPageState createState() => _AboutPageState();
 }
 
-class _PlayoffPageState extends State<PlayoffPage> {
+class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    final bodyColumn = Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Build the 2023 NBA Playoff Bracket',
-            style: TextStyle(
-                color: Colors.red, fontSize: 36, fontWeight: FontWeight.bold),
-          ),
-          Image.asset("assets/blankBracket.png"),
-          SizedBox(
-            height: 100,
-            width: 300,
-            child: ElevatedButton(
-              child: Text('PREDICT NOW'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                // side: BorderSide(color: Colors.yellow, width: 5),
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontStyle: FontStyle.normal),
-                shadowColor: Colors.black,
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PlayoffResults())),
-            ),
-          ),
-        ],
-      ),
-    );
     return Scaffold(
       appBar: AppBar(
         //adding an Appbar
@@ -89,32 +56,24 @@ class _PlayoffPageState extends State<PlayoffPage> {
 
           Center(
             //adding the second navigation item and positioning it at the center
-            child: Text('Playoff Predictor',
-                style: TextStyle(color: Colors.black)),
+            child: TextButton(
+              child: Text('Playoff Predictor',
+                  style: TextStyle(color: Colors.white)),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PlayoffPage()),
+              ),
+            ),
           ),
           SizedBox(width: 60),
           Center(
             //adding the second navigation item and positioning it at the center
-            child: TextButton(
-              child: Text('About', style: TextStyle(color: Colors.white)),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutPage()),
-              ),
-            ),
+            child: Text('About', style: TextStyle(color: Colors.black)),
           ),
           SizedBox(width: 80)
         ],
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('text', style: TextStyle(color: Colors.white)),
-          bodyColumn,
-          Text('text', style: TextStyle(color: Colors.white)),
-        ],
-      ),
+      body: Text('about'),
       bottomNavigationBar: BottomAppBar(
         child: Text(
           'University of North Texas: Team Fruitcakes',

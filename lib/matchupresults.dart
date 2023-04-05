@@ -1,36 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:nba_app/playoffresults.dart';
 // ignore: unused_import
 import './homepage.dart'; //importing the home widget
 import './matchup.dart';
+import './playoffpage.dart';
 import './aboutpage.dart';
 
-class PlayoffPage extends StatefulWidget {
-  const PlayoffPage({Key? key}) : super(key: key);
+final game = Container(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text('The Game    ',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      Text('Game info here', style: TextStyle(fontSize: 18)),
+    ],
+  ),
+);
+
+final winner = Container(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text('The Winner    ',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      Text('Winner info here', style: TextStyle(fontSize: 18)),
+    ],
+  ),
+);
+
+final score = Container(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text('The Score   ',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      Text('Score info here', style: TextStyle(fontSize: 18)),
+    ],
+  ),
+);
+
+final resultsBox = Container(
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      game,
+      winner,
+      score,
+    ],
+  ),
+);
+
+class MatchupResults extends StatefulWidget {
+  const MatchupResults({Key? key}) : super(key: key);
 
   @override
-  _PlayoffPageState createState() => _PlayoffPageState();
+  _MatchupResultsState createState() => _MatchupResultsState();
 }
 
-class _PlayoffPageState extends State<PlayoffPage> {
+class _MatchupResultsState extends State<MatchupResults> {
   @override
   Widget build(BuildContext context) {
-    final bodyColumn = Container(
+    final midColumn = Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Build the 2023 NBA Playoff Bracket',
+            'Matchup Prediction Results',
             style: TextStyle(
                 color: Colors.red, fontSize: 36, fontWeight: FontWeight.bold),
           ),
-          Image.asset("assets/blankBracket.png"),
+          resultsBox,
           SizedBox(
             height: 100,
             width: 300,
             child: ElevatedButton(
-              child: Text('PREDICT NOW'),
+              child:
+                  Text('PREDICT ANOTHER MATCHUP', textAlign: TextAlign.center),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
                 // side: BorderSide(color: Colors.yellow, width: 5),
@@ -40,8 +89,8 @@ class _PlayoffPageState extends State<PlayoffPage> {
                     fontStyle: FontStyle.normal),
                 shadowColor: Colors.black,
               ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const PlayoffResults())),
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const MatchupPage())),
             ),
           ),
         ],
@@ -89,8 +138,14 @@ class _PlayoffPageState extends State<PlayoffPage> {
 
           Center(
             //adding the second navigation item and positioning it at the center
-            child: Text('Playoff Predictor',
-                style: TextStyle(color: Colors.black)),
+            child: TextButton(
+              child: Text('Playoff Predictor',
+                  style: TextStyle(color: Colors.white)),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PlayoffPage()),
+              ),
+            ),
           ),
           SizedBox(width: 60),
           Center(
@@ -111,7 +166,7 @@ class _PlayoffPageState extends State<PlayoffPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('text', style: TextStyle(color: Colors.white)),
-          bodyColumn,
+          midColumn,
           Text('text', style: TextStyle(color: Colors.white)),
         ],
       ),
