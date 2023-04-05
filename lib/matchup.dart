@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:nba_app/matchupresults.dart';
 // ignore: unused_import
 import './homepage.dart'; //importing the home widget
 import './playoffpage.dart';
+import './aboutpage.dart';
 
 String dropdownvalue = 'Select Team';
+
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 var items = [
   'Select Team',
@@ -133,17 +137,8 @@ class _MatchupPageState extends State<MatchupPage> {
 
             Center(
               //adding the second navigation item and positioning it at the center
-              child: TextButton(
-                child: Text('Matchup Predictor',
-                    style: TextStyle(color: Colors.black)),
-                onPressed: () {
-                  //determining what should happen when the navigation item is clicked.
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MatchupPage()),
-                  );
-                },
-              ),
+              child: Text('Matchup Predictor',
+                  style: TextStyle(color: Colors.black)),
             ),
             SizedBox(width: 60), //putting some space between the nav items
 
@@ -155,6 +150,17 @@ class _MatchupPageState extends State<MatchupPage> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const PlayoffPage()),
+                ),
+              ),
+            ),
+            SizedBox(width: 60),
+            Center(
+              //adding the second navigation item and positioning it at the center
+              child: TextButton(
+                child: Text('About', style: TextStyle(color: Colors.white)),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
                 ),
               ),
             ),
@@ -186,12 +192,19 @@ class _MatchupPageState extends State<MatchupPage> {
                   shadowColor: Colors.black,
                 ),
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const MatchupPage())),
+                    builder: (context) => const MatchupResults())),
               ),
             ),
           ],
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: Text(
+            'University of North Texas: Team Fruitcakes',
+            style: TextStyle(color: Colors.blue),
+          ),
         ),
       ),
     );
   }
 }
+
